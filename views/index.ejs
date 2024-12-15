@@ -7,14 +7,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Youtube 2 MP3 Converter Bas</title>
+    <script>
+        // Function to extract YouTube video ID
+        function extractVideoID(url) {
+            const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=))([^"&?\/\s]{11})/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        }
+
+        // Event listener for form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const videoUrl = document.getElementById('videoID').value;
+            const videoID = extractVideoID(videoUrl);
+            if (videoID) {
+                document.getElementById('videoID').value = videoID; // Set the value to just the video ID
+                // You can now submit the form with the extracted ID if necessary
+                document.getElementById('form').submit(); 
+            } else {
+                alert("Invalid YouTube URL");
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="top-container">
-        <form action="convert-mp3" method="POST" id="form">
-            <h1><i class="fab fa-youtube"></i>Youtube To MP3 Converter For Bas</h1>
+        <form action="convert-mp3" method="POST" id="form" onsubmit="handleFormSubmit(event)">
+            <h1><i class="fab fa-youtube"></i> Youtube To MP3 Converter For Bas</h1>
             <h4>Enter Video link</h4>
             <div>
-                <input type="text" name="videoID" placeholder="Video ID"><button id="convert-btn">Convert</button>
+                <input type="text" name="videoID" id="videoID" placeholder="Video URL">
+                <button id="convert-btn">Convert</button>
             </div>
 
             <div class="button">
@@ -30,12 +53,6 @@
                 <% } %>
             </div>
         </form>
-
-
-      
     </div>
-    
-    
-    
 </body>
 </html>
