@@ -40,19 +40,21 @@
                 <button id="convert-btn">Convert</button>
             </div>
 
-            <div class="button">
-                <% if (typeof success != "undefined" && success) { %>
-                    <div class="success">
-                        <p><%= song_title %></p>
-                        <a href="<%= song_link %>"><button id="download-btn">DOWNLOAD</button></a>
-                    </div>
-                <% } else if (typeof success != "undefined" && !success) { %>
-                    <div class="errors">
-                        <p><%= message %></p>
-                    </div>
-                <% } %>
-            </div>
+           
         </form>
+
+        <div class="button">
+            <% if (typeof success != "undefined" && success) { %>
+                <div class="success">
+                    <p><%= song_title %></p>
+                    <a href="<%= song_link %>"><button id="download-btn">DOWNLOAD</button></a>
+                </div>
+            <% } else if (typeof success != "undefined" && !success) { %>
+                <div class="errors">
+                    <p><%= message %></p>
+                </div>
+            <% } %>
+        </div>
     </div>
 </body>
 </html>
